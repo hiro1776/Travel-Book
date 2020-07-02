@@ -16,6 +16,6 @@
 ### 主な利用シーン
 ### 旅行内容を記録したい人、次に旅行先が決まっていない方
 
-##設計書
+## 設計書
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1gavSv2W0XetghQiYWOCdU8qVFOt4odmHvbdTRnL7D0M/edit#gid=0>
