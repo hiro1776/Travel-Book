@@ -1,6 +1,9 @@
 class TravelPost < ApplicationRecord
 	has_many :tag_maps, dependent: :destroy
   	has_many :tags, through: :tag_maps
+  has many :about, dependent: :destroy
+  
+  belongs_to :user
 
   def save_posts(savepost_tags)
   user_tags = self.tags.pluck(:name) unless self.tags.nil?
