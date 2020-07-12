@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   	resources :travel_posts, only: [:show, :index]
   end
   root 'abouts#index'
-  resources :users, only: [ :show, :edit, :update ]
+  resources :users, only: [:show, :edit, :update ]
   resources :travel_posts
   resources :tags, only: [:create]
   resources :tag_maps, only:[:create]
