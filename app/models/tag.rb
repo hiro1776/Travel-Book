@@ -1,4 +1,4 @@
 class Tag < ApplicationRecord
-	has_many :tag_maps, dependent: :destroy, foreign_keys: 'tag_id'
-	has_many :travel_posts through: :tag_maps
+	has_many :travel_post_tag_relations, dependent: :destroy
+	has_many :travel_posts, through: :travel_post_tag_relations, dependent: :destroy
 end

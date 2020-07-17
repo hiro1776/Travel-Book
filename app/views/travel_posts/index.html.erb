@@ -1,1 +1,6 @@
 投稿一覧画面
+
+<!-- タグ　表示 -->
+<% @travel_post.tags.each do |tag| %>
+    <span class= 'badge badge-primary'><%= tag.name %></span>
+<% end %>
