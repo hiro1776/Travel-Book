@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'contacts/new'
-  get 'contacts/create'
+  get 'contacts' => 'contacts#new'
+  post 'contacts' =>'contacts#create'
+  get 'contacts/complete' => 'contacts#complete'
   devise_for :users, controllers:{
   	sessions: 		'users/sessions',
   	passwords: 		'users/passwords',
