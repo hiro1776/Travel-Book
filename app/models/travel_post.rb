@@ -1,24 +1,17 @@
 class TravelPost < ApplicationRecord
-	has_many :tag_maps, dependent: :destroy
-  	has_many :tags, through: :tag_maps
-  has many :about, dependent: :destroy
+  has_many :tags, through: :travel_post_tag_relations, dependent: :destroy
+  has_many :abouts, dependent: :destroy
+  has_many :travel_post_tag_relations, dependent: :destroy
   
   belongs_to :user
 
-  def save_posts(savepost_tags)
-  user_tags = self.tags.pluck(:name) unless self.tags.nil?
-  old_tags = current_tags - savepost_tags
-  new_tags = savepost_tags - user_tags
+  validates :user_id, presence: true
+  validates :travel_image_url
+  validates :title, presence: true
+  validates :price
+  validates :body, presence: true
 
-    # Destroy old taggings:
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_name)
-    end
-
-    # Create new taggings:
-    new_tags.each do |new_name|
-      post_tag = Tag.find_or_create_by(name:new_name)
-      self.tags << post_tag
-    end
+  def article_params
+    params.require(:travel_post).permit(:title, :body, tag_ids: [])
   end
 end
