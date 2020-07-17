@@ -1,1 +1,17 @@
-お問い合わせフォーム
+<!-- お問い合わせフォーム -->
+<%= form_for @contact do |f| %>
+<h1>お問い合わせ</h1>
+
+  <div class="form-group">
+    <%= f.label :email, '返信先メールアドレス' %>
+    <%= f.email_field :email %>
+  </div>
+
+ <div class="form-group">
+   <%= f.label :message, 'お問い合わせ内容' %>
+   <%= f.text_area :message, size: '100x10' %>
+ </div>
+
+  <%= f.submit '送信' %>
+
+<% end %>

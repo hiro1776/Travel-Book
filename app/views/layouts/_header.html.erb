@@ -6,7 +6,7 @@
                     <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
                          <li><%= link_to "マイページ", user_path(current_user), class: "nav-button" %></li>
                          <li><%= link_to "投稿一覧", travel_posts_path, class: "nav-button" %></li>
-                         <li><%= link_to "お問い合わせ", contacts_new_path, class: "nav-button"%></li>
+                         <li><%= link_to "お問い合わせ", contacts_path, class: "nav-button"%></li>
                          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-button" %></li>
                </ul>
           </div>
@@ -18,7 +18,7 @@
                <ul class="d-flex">
                     <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
                          <li><%= link_to "新規登録", new_user_registration_path, class: "nav-button" %></li>
-                         <li><%= link_to "お問い合わせ", contacts_new_path,class: "nav-button" %></li>
+                         <li><%= link_to "お問い合わせ", contacts_path,class: "nav-button" %></li>
                          <li><%= link_to "ログイン", new_user_session_path, class: "nav-button" %></li>
                     </ul>
      	    </ul>
