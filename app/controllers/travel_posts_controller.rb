@@ -4,7 +4,11 @@ class TravelPostsController < ApplicationController
 		@travel_post = TravelPost.new
 	end
 	def index
-		@travel_post = TravelPost.all
+		@tags = Tag.all
+		@serch = TravelPost.ransack(params[:q])
+		@travel_posts = TravelPost.all
+		@posts = @serch.result.page(params[:page]).per(8)
+		@post = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
 	end
 	def create
 		@travel_post = TravelPost.new(travel_post_params)

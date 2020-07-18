@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   	registarations: 'users/registarations'
   }
 
-  scope module: 'users' do
-  	resources :travel_posts, only: [:show, :index]
-  end
   root 'abouts#index'
   resources :users, only: [:show, :edit, :update ]
   resources :travel_posts

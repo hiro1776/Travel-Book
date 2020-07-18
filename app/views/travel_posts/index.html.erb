@@ -1,6 +1,22 @@
-投稿一覧画面
-
-<!-- タグ　表示 -->
-<% @travel_post.tags.each do |tag| %>
-    <span class= 'badge badge-primary'><%= tag.name %></span>
-<% end %>
+<!-- 投稿一覧画面 -->
+<%=form_tag travel_posts_path, method: :get, class: 'boards_searchForm' do %>
+	<%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+	{ prompt: 'タグで絞り込み検索',onchange: 'submit(this.form);'}%>
+	<% end %>
+</div>
+<h2>投稿一覧(全<%= @travel_posts.count %>件)</h2>
+<div class="col-xs-9 col-xs-offset-1">
+	<div class="product-card-content">
+		<% @travel_posts.each do |post| %>
+			<%= link_to travel_post_path(travel_post.id),style: "color: black;", data: {"turbolinks" => false} do %>
+				<%= attachment_image_tag post, :image, :fill, 200, 150, format: 'jpeg',fallback: "no_image.jpg" %><br>
+				<%= post.name %>
+		<!-- タグ　表示 -->
+				<% post.tags.each do |tag| %>
+				    <td class= 'badge badge-primary'><%= tag.name %></td>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<div style="text-align: center;"><%= paginate @posts %></div>
