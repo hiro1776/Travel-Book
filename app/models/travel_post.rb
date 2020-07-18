@@ -6,12 +6,10 @@ class TravelPost < ApplicationRecord
   belongs_to :user
 
   validates :user_id, presence: true
-  validates :travel_image_url
   validates :title, presence: true
-  validates :price
   validates :body, presence: true
 
-  def article_params
+  def travel_post_params
     params.require(:travel_post).permit(:title, :body, tag_ids: [])
   end
 end

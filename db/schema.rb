@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_093125) do
 
   create_table "travel_posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.text "travel_image_url"
+    t.string "image_id"
     t.string "title", null: false
     t.integer "price"
     t.text "body", null: false
