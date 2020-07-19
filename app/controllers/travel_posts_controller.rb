@@ -8,7 +8,7 @@ class TravelPostsController < ApplicationController
 		@serch = TravelPost.ransack(params[:q])
 		@travel_posts = TravelPost.all
 		@posts = @serch.result.page(params[:page]).per(8)
-		@post = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+		@post = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : TravelPost.all
 	end
 	def create
 		@travel_post = TravelPost.new(travel_post_params)

@@ -1,4 +1,5 @@
 <!--マイページ画面 -->
+
 <h3><strong>マイページ</strong></h3>
         <table class="table table-bordered table-condensed">
             <p>
@@ -7,11 +8,11 @@
             </p>
             <tr>
                 <td class="col-xs-2">氏名</td>
-                <td><%= current_user.name %></td>
+                <td><%= @user.name %></td>
             </tr>
             <tr>
                 <td class="col-xs-2">メールアドレス</td>
-                <td><%= current_user.email %></td>
+                <td><%= @user.email %></td>
             </tr>
         </table>
         <p>
