@@ -1,17 +1,19 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
 	def show
-		 @user = User.find(params[:id])
+		 @user = current_user
 	end
 	def edit
+		@user = current_user
 	end
 	def update
 		@user = current_user
 		if @user.update(user_params)
 			flash[:success] = "登録情報を変更しました。"
-			redirect to user_path
+			redirect_to user_path(current_user)
 		else
-			render 'edit'
+			render edit_user_path(current_user)
+		end
 	end
 	private
 	def user_params
