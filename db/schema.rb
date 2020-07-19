@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 2020_07_19_060055) do
   end
 
   create_table "post_histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "image_id"
+    t.string "title", null: false
+    t.integer "price"
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

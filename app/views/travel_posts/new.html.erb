@@ -1,6 +1,16 @@
 <!-- 新規投稿画面 -->
+<h2>新規投稿</h2>
 <%= form_for @travel_post do |f| %>
-
+    <tr></tr>
+    <div class="field">
+        <th>旅行画像</th>
+        <th><%= attachment_image_tag  %></th>
+        <th>name</th>
+        <th><%= f.text_field :name, class:"name",autofocus: true, autocomplete: "name" %></th>
+    </div>
+    <div class="field">
+        <th></th>
+    </div>
 <!-- タグのチェックボックス -->
     <div class='form-group'>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>

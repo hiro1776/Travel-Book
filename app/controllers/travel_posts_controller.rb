@@ -11,7 +11,7 @@ class TravelPostsController < ApplicationController
 		@post = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : TravelPost.all
 	end
 	def create
-		@travel_post = TravelPost.new(travel_post_params)
+		@travel_post = TravelPost.new
 		if travel_post.save
 			redirect_to travel_posts_path
 		else

@@ -1,7 +1,7 @@
 class TravelPost < ApplicationRecord
-  has_many :tags, through: :travel_post_tag_relations, dependent: :destroy
-  has_many :abouts, dependent: :destroy
   has_many :travel_post_tag_relations, dependent: :destroy
+  has_many :tags, through: :travel_post_tag_relations
+  has_many :abouts, dependent: :destroy
   
   belongs_to :user
 
