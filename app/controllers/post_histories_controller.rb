@@ -1,8 +1,9 @@
-class PostHistorysController < ApplicationController
+class PostHistoriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @post_histories = current_user.post_histories
+    @post_histories = PostHistory.all
   end
+
 
   def show
     @post_history = PostHistory.find(params[:id])

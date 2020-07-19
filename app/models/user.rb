@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
          has_many :about, dependent: :destroy
          has_many :travel_posts, dependent: :destroy
+         has_many :travel_histories, dependent: :destroy
 
 end
