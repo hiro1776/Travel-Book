@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'contacts' => 'contacts#new'
   post 'contacts' =>'contacts#create'
   get 'contacts/complete' => 'contacts#complete'
@@ -13,5 +14,6 @@ Rails.application.routes.draw do
   resources :travel_posts
   resources :tags, only: [:create]
   resources :tag_maps, only:[:create]
+  resources :post_historys
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
