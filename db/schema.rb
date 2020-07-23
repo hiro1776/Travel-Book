@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_07_19_060055) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name", default: "", null: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,19 +62,22 @@ ActiveRecord::Schema.define(version: 2020_07_19_060055) do
   end
 
   create_table "travel_posts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
+    t.integer "tag_id"
     t.string "image_id"
     t.string "title", null: false
     t.integer "price"
     t.text "body", null: false
+    t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_travel_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: ""
+    t.string "name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

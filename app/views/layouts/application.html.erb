@@ -9,17 +9,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
-
+  <body>
+    <div class="body">
     <!-- ヘッダー -->
-    <div id="header">
-      <%= render "layouts/header" %>
+      <div id="header">
+          <%= render "layouts/header" %>
       </div>
-    </div>
-    <%= yield %>
+      <div class="flex">
+        <%= yield %>
+      </div>
     <!-- フッター -->
-      <%= render "layouts/footer" %>
+        <%= render "layouts/footer" %>
+      <% else %>
     </div>
-    <% else %>
 
   </body>
 </html>
