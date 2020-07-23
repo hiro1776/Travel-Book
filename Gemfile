@@ -77,5 +77,8 @@ gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave'
 
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
+
 
 

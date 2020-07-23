@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update ]
   resources :travel_posts
   resources :tags do
-    get 'travel_posts', to:'travelposts#search'
+    resources :travel_posts
   end
   resources :tag_maps, only:[:create]
   resources :post_histories
