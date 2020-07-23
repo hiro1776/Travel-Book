@@ -1,50 +1,91 @@
 class TravelPostsController < ApplicationController
 	before_action :authenticate_user!
-	def new
-		@travel_post = TravelPost.new
+	before_action :set_travel_post, only: [:show, :edit, :update, :destroy]
 
-	end
+	# GET /travel_posts
+	# GET /travel_posts.json
 	def index
-		@serch = TravelPost.ransack(params[:q])
 		@travel_posts = TravelPost.all
+		@serch = TravelPost.ransack(params[:q])
 		@posts = @serch.result.page(params[:page]).per(8)
 		@post = current_user.travel_posts.new
-	end
-	def create
-		@travel_post = current_user.travel_posts.new(travel_post_params)
 
-		if @travel_post.save
-			redirect_to travel_posts_path(@travel_post.id)
-		else
-			@travel_post = TravelPost.new
-			render 'new'
-		end
 	end
+
+	# GET /travel_posts/1
+	# GET /travel_posts/1.json
 	def show
 		@travel_post = TravelPost.find(params[:id])
 		# 投稿に紐づけたタグの取得
 		@post_tags = @travel_post.tags
+
 	end
-	def edit
+
+	# GET /travel_posts/new
+	def new
+		@travel_post = TravelPost.new
 	end
+
+	# GET /travel_posts/1/edit
+		def edit
+	end
+
+	# POST /travel_posts
+	# POST /travel_posts.json
+	def create
+		@travel_post = current_user.travel_posts.new(travel_post_params)
+		respond_to do |format|
+    		if @travel_post.save(travel_post_params)
+        		format.html { redirect_to travel_posts_path(@travel_post.id), notice: 'Travel post was successfully created.' }
+        		format.json { render :show, status: :created, location: @travel_post }
+    		else
+    			@travel_post = TravelPost.new
+        		format.html { render :new }
+        		format.json { render json: @travel_post.errors, status: :unprocessable_entity }
+    		end
+    	end
+  	end
+
+	# PATCH/PUT /travel_posts/1
+	# PATCH/PUT /travel_posts/1.json
 	def update
+    	respond_to do |format|
+    		if @travel_post.update(travel_post_params)
+        		format.html { redirect_to @travel_post, notice: 'Travel post was successfully updated.' }
+        		format.json { render :show, status: :ok, location: @travel_post }
+      		else
+        		format.html { render :edit }
+        		format.json { render json: @travel_post.errors, status: :unprocessable_entity }
+    		end
+    	end
 	end
+
+	# DELETE /travel_posts/1
+	# DELETE /travel_posts/1.json
 	def destroy
-		@travel_post = TravelPost.find(params[:id])
-		@travel_post.destroy
-		flash[:alert] = "投稿を削除しました"
-		redirect_to user_path
-
+	    @travel_post.destroy
+    	respond_to do |format|
+    		format.html { redirect_to travel_posts_url, notice: 'Travel post was successfully destroyed.' }
+    		format.json { head :no_content }
+    		flash[:alert] = "投稿を削除しました"
+			redirect_to user_path
+    	end
 	end
-
 	def search
 		@tag_list = Tag.all  #全てのタグを表示するために、タグを全取得
 		@tag = Tag.find(params[:tag_id])  #タグを取得
 		@posts = @tag.posts.all           #タグに紐付けられた投稿を全て表示
 	end
-	private
-	def travel_post_params
-		params.require(:travel_post).permit(:user_id, :image_id, :title, :body, :price, :img, :tag_id)
-	end
 
+
+	private
+    # Use callbacks to share common setup or constraints between actions.
+    	def set_travel_post
+    		@travel_post = TravelPost.find(params[:id])
+    	end
+
+    # Only allow a list of trusted parameters through.
+    	def travel_post_params
+    		params.require(:travel_post).permit(:user_id, :image_id, :title, :body, :price, :img, :tag_id )
+    	end
 end
