@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   root 'abouts#index'
   resources :users, only: [:show, :edit, :update ]
   resources :travel_posts
-  resources :tags, only: [:create]
+  resources :tags do
+    get 'travel_posts', to:'travelposts#search'
+  end
   resources :tag_maps, only:[:create]
   resources :post_histories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

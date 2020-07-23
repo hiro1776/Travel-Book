@@ -2,26 +2,39 @@
 <h2>新規投稿</h2>
 <%= form_for @travel_post do |f| %>
     <tr></tr>
-    <div class="field">
-        <th>旅行画像</th>
-        <th><%= attachment_image_tag  %></th>
-        <th>name</th>
-        <th><%= f.text_field :name, class:"name",autofocus: true, autocomplete: "name" %></th>
-    </div>
+    <ul class="field">
+
+            <li><h3><%= f.label :img, "旅行画像" %></h3></li>
+            <%= f.file_field :img, id: :travel_post_img%></li>
+        <tr>
+            <th><%= f.label :title,"旅行場所名　（必須）" %></th>
+            <th><%= f.text_field :title %></th><br>
+        </tr>
+        <tr>
+            <th><%= f.label :price, "旅行金額" %></th>
+            <th><%= f.number_field :price %></th><br>
+        </tr>
+        <tr>
+            <th><%= f.label :body, "旅行内容" %></th>
+            <th><%= f.text_area :body %></th><br>
+        </tr>
+
+    </ul>
     <div class="field">
         <th></th>
     </div>
 <!-- タグのチェックボックス -->
-    <div class='form-group'>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+ <%= f.label :tag, "タグを選択してください" %>
+    <ul class='form-group'>
+        <%= f.collection_check_boxes(:tag_id, Tag.all, :id, :name) do |tag| %>
             <div class='form-check'>
                 <%= tag.label class: 'form-check-label' do %>
                     <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
+                    <%= tag.label %>
                 <% end %>
             </div>
         <% end %>
-    </div>
+    </ul>
 
-    <%= f.submit '保存', class: 'btn btn-primary' %>
+    <%= f.submit '投稿', class: 'btn btn-primary' %>
 <% end %>

@@ -72,8 +72,10 @@ gem 'popper_js', '~> 1.9.9'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
+gem 'carrierwave'
 gem 'kaminari'
 gem 'ransack'
+gem 'carrierwave'
 
 
 

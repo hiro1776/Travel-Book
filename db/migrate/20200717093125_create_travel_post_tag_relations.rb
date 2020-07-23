@@ -4,6 +4,9 @@ class CreateTravelPostTagRelations < ActiveRecord::Migration[5.2]
       t.references :travel_post, foreign_key: true
       t.references :tag, foreign_key: true
 
+      t.integer :tag_id
+      t.integer :travel_post_id
+
       t.timestamps
     end
   end
