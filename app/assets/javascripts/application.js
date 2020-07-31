@@ -18,12 +18,3 @@
 //= require turbolinks
 //= require_tree .
 
-$ document.addEventListener("turbolinks:load",(function() {
-    $('.a').slick({
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 3000,
-    });
-});
-
-$('#like-btn-<%= @post.id %>').html("<%= escape_javascript(render partial: "likes/like", locals: { post: @post }) %>");
