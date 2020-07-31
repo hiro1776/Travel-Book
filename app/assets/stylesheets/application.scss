@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+	.body{
+		justify-content: center;
+		.flex{
+			width: 960px;
+			margin: auto;
+			font-family: sans-serif ;
+		}
+	}
+  	.logo img{
+	      width: 100px;
+	      height: 100px;
+   	}
+
+   	.nav-header{
+		display: flex;
+		align-content: space-around;
+		justify-content:center;
+	}
+
+
+
+	li {
+    list-style: none;
+    padding: 50px 20px 0px 20px;
+        .nav-button {
+			display: inline-block;
+			padding: 0.3em 1em;
+			text-decoration: none;
+			color: #67c5ff;
+			border: solid 2px #67c5ff;
+			border-radius: 3px;
+			transition: .4s;
+		}
+
+		.nav-button:hover {
+			background: #67c5ff;
+			color: white;
+		}
+		}
+	.wrapper {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		min-height: 100%;
+		padding: 20px;
+	}
+	.login {
+		border-radius: 2px 2px 5px 5px;
+		padding: 10px 20px 20px 20px;
+		width: 90%;
+		max-width: 320px;
+		background-color: #f5f5f5;
+		position: relative;
+		padding-bottom: 80px;
+		box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+	}
+	.actions{
+		width: 100%;
+	    height: 100%;
+	    padding: 10px 10px;
+	    color: #fff;
+	    display: block;
+	}
+	.signup{
+		border-radius: 2px 2px 5px 5px;
+		padding: 10px 20px 20px 20px;
+		width: 90%;
+		max-width: 320px;
+		background: #ffffff;
+		position: relative;
+		box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+	}

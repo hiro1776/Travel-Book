@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+<!-- ログイン中の場合 -->
+     <header>
+          <div class="header-content">
+               <ul class="nav-header">
+                    <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
+                         <li><%= link_to "マイページ", user_path(current_user), class: "nav-button" %></li>
+                         <li><%= link_to "投稿一覧", travel_posts_path, class: "nav-button" %></li>
+                         <li><%= link_to "お問い合わせ", contacts_path, class: "nav-button"%></li>
+                         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-button" %></li>
+               </ul>
+          </div>
+     </header>
+<% else %>
+<!-- 未ログインの場合 -->
+     <header>
+          <div class="header-content">
+               <ul class="nav-header">
+                    <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
+                         <li><%= link_to "新規登録", new_user_registration_path, class: "nav-button" %></li>
+                         <li><%= link_to "お問い合わせ", contacts_path,class: "nav-button" %></li>
+                         <li><%= link_to "ログイン", new_user_session_path, class: "nav-button" %></li>
+                    </ul>
+     	    </ul>
+          </div>
+     </header>
+<% end %>

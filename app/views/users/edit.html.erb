@@ -1,0 +1,14 @@
+<!-- マイページ編集画面 -->
+<div class="mypage">
+  <%= form_with model: @user do |f| %>
+		<h3><strong>登録情報編集</strong></h3>
+    <hr>
+    	<%= f.label :"ユーザ名" %>
+      <%= f.text_field :name %><br>
+      <%= f.label :"メールアドレス" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email"   %>
+    <div class="actions col-xs-10 col-xs-offset-2">
+      <p><%= f.submit "変更する", class: "btn btn-primary" %></p>
+   	</div>
+  <% end %>
+</div>

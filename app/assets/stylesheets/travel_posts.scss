@@ -1,0 +1,42 @@
+// Place all the styles related to the TravelPosts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+	.d-flex{
+		display: flex;
+		flex-flow: row wrap;
+		align-content: space-around;
+		}
+
+
+
+.flex > div {
+	justify-content: flex-start;
+	flex-basis: 30%;
+
+	img{
+		width: 250px;
+		height: 300px;
+
+	}
+}
+.flex-item{
+	margin: 30px;
+}
+
+
+.form{
+	padding: 10px 20px 20px 20px;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+	background-color: #f5f5f5;
+
+	.form-item{
+		padding: 10px;
+	}
+
+	p{
+	font-size: 20px;
+	}
+}

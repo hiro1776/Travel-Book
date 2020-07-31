@@ -7,9 +7,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://kit.fontawesome.com/e9f5ec0232.js" crossorigin="anonymous"></script>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="body">
+    <!-- ヘッダー -->
+      <div id="header">
+          <%= render "layouts/header" %>
+      </div>
+      <div class="flex">
+        <%= yield %>
+      </div>
+    <!-- フッター -->
+        <%= render "layouts/footer" %>
+      <% else %>
+    </div>
+
   </body>
 </html>
