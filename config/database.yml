@@ -30,4 +30,4 @@ production:
   host: <%= ENV['db-travel-book.cqxdah5tpkqh.ap-northeast-1.rds.amazonaws.com'] %>
   username: <%= ENV['db-travel-book'] %>
   password: <%= ENV['taka6968'] %>
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
