@@ -1,24 +1,23 @@
 <!-- 投稿一覧画面 -->
 <%=form_tag travel_posts_path, method: :get, class: 'boards_searchForm' do %>
-	<%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-	{ prompt: 'タグで絞り込み検索',onchange: 'submit(this.form);'}%>
+	<%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),{ prompt: 'タグで絞り込み検索',onchange: 'submit(this.form);'}%>
 	<% end %>
 <h2>投稿一覧(全<%= @travel_posts.count %>件)</h2>
 <div class="d-flex">
 	
-		<% @travel_posts.last(9).each do |travel_post| %>
+		<% @travel_posts.each do |travel_post| %>
 		<div class="flex-item">
 				<%= link_to travel_post_path(travel_post.id),style: "color: black;", data: {"turbolinks" => false} do %>
 					<%= image_tag travel_post.img.url, fallback: "no_image.jpg" %><br>
+					
 					<%= travel_post.created_at.strftime('%Y/%m/%d') %>
 					<%= travel_post.title %>
 			<!-- タグ　表示 -->
-					<% travel_post.tags.each do |tag| %>
-					    <td class= 'badge badge-primary'><%= tag_name %></td>
-					<% end %>
+						<%= travel_post.tag.name %>
+					<%= travel_post.user.name %>
 				<% end %>
 			</div>
 		<% end %>
 	</div>
 </div>
-<div style="text-align: center;"><%= paginate @posts %></div>
+<div style="text-align: center;"><%= paginate @travel_posts %></div>

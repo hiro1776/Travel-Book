@@ -1,20 +1,14 @@
 <!-- マイページ編集画面 -->
-<div class="row">
-    <div class="col-xs-12">
-    	<%= form_with model: @user do |f| %>
-    	<div class="col-xs-12">
-			<h3><strong>登録情報編集</strong></h3>
-    	
-      		<%= f.label :"氏名", class: "col-sm-3 control-label", style: "margin: 10px;" %>
-        	<%= f.text_field :name, class: "name col-sm-3 form-control-static name", style: "margin: 10px;" %>
-    	</div>
-        <div class="col-xs-12">
-              <%= f.label :"メールアドレス", class: "col-sm-3 control-label", style: "margin: 10px;" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-6 form-control-static", style: "margin: 10px;" %>
-        </div>
-        <div class="actions col-xs-10 col-xs-offset-2">
-        	<p><%= f.submit "編集内容を保存する", class: "btn btn-primary col-sm-3", style: "margin: 10px;" %></p>
-     	</div>
-    	<% end %>
-	</div>
+<div class="mypage">
+  <%= form_with model: @user do |f| %>
+		<h3><strong>登録情報編集</strong></h3>
+    <hr>
+    	<%= f.label :"ユーザ名" %>
+      <%= f.text_field :name %><br>
+      <%= f.label :"メールアドレス" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email"   %>
+    <div class="actions col-xs-10 col-xs-offset-2">
+      <p><%= f.submit "変更する", class: "btn btn-primary" %></p>
+   	</div>
+  <% end %>
 </div>

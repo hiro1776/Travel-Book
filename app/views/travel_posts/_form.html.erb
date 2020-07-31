@@ -1,38 +1,48 @@
-<!-- 新規投稿画面 -->
-<h2>新規投稿</h2>
-<%= form_with(model: travel_post, local: true) do |f| %>
-  <% if travel_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(travel_post.errors.count, "error") %> prohibited this travel_post from being saved:</h2>
-
-      <ul>
-      <% travel_post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<!-- 新規投稿画面 、　編集画面-->
+<div class="wrapper">
+  <div class="form">
+    <h2>投稿画面</h2>
+    <%= form_with(model: travel_post, local: true) do |f| %>
+      <% if travel_post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(travel_post.errors.count, "error") %> prohibited this travel_post from being saved:</h2>
+          <ul>
+          <% travel_post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <tr></tr>
-  <ul class="field">
-    <th><h4><%= f.label :title, "旅行場所名　（必須）" %></h4>
-        <%= f.text_field :title %></th>
-
-    <th><h4><%= f.label :img, "旅行画像" %></h4>
-        <%= f.file_field :img, id: :travel_post_img %></th><br>
-
-    <th><h4><%= f.label :price, "旅行金額" %></h4>
-    <th><%= f.number_field :price %></th><br>
-
-    <th><h4><%= f.label :body, "旅行内容" %></h4></th>
-    <th><%= f.text_area :body, size:"50x20" %></th>
-
-  <!-- タグのチェックボックス -->
-  <%= f.label :tag, "タグを選択してください" %>
-    <ul class='form-group'>
-      <%= f.collection_select :tag_id, Tag.all, :id, :name, prompt:"選択してください" %>
-    </ul>
-
-  <div class="actions">
-    <%= f.submit "投稿",class: 'btn btn-primary'  %>
+      <div class="form-item">
+        <p><%= f.label :title, "旅行場所名　（必須）" %></p>
+        <%= f.text_field :title %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <div class="form-item">
+        <p><%= f.label :img, "旅行画像" %></p>
+        <%= f.file_field :img, id: :travel_post_img, size:'100x100' %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <div class="form-item">
+        <p><%= f.label :price, "旅行金額" %></p>
+        <%= f.number_field :price %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <div class="form-item">
+        <p><%= f.label :body, "旅行内容" %></p>
+        <%= f.text_area :body, size:"50x20" %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <div class="form-item">
+        <!-- タグのチェックボックス -->
+        <%= f.label :tag, "タグを選択してください" %>
+          <ul id="article-tags">
+            <%= f.collection_select :tag_id, Tag.all, :id, :name, prompt:"選択してください" %>
+          </ul>
+          <div class="actions">
+            <%= f.submit "投稿",class: 'btn btn-primary'  %>
+          </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

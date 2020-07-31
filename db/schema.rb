@@ -12,36 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_07_23_092537) do
 
-  create_table "abouts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string "email"
     t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "travel_post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "post_histories", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "image_id"
-    t.string "title", null: false
-    t.integer "price"
-    t.text "body", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tag_maps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,15 +23,6 @@ ActiveRecord::Schema.define(version: 2020_07_23_092537) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "travel_post_tag_relations", force: :cascade do |t|
-    t.integer "travel_post_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_travel_post_tag_relations_on_tag_id"
-    t.index ["travel_post_id"], name: "index_travel_post_tag_relations_on_travel_post_id"
   end
 
   create_table "travel_posts", force: :cascade do |t|
@@ -74,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_07_23_092537) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"

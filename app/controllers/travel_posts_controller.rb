@@ -5,20 +5,22 @@ class TravelPostsController < ApplicationController
 	# GET /travel_posts
 	# GET /travel_posts.json
 	def index
-		@travel_posts = TravelPost.all
-		@serch = TravelPost.ransack(params[:q])
-		@posts = @serch.result.page(params[:page]).per(8)
-		@post = current_user.travel_posts.new
-
+		if params[:tag_id]
+			@tag = Tag.find(params[:tag_id])
+			@travel_posts = @tag.travel_posts.page(params[:page]).per(8)
+			@post = TravelPost.new
+		else
+			@travel_posts = TravelPost.page(params[:page]).per(8)
+			@post = TravelPost.new
+		end
 	end
-
 	# GET /travel_posts/1
 	# GET /travel_posts/1.json
 	def show
-		@travel_post = TravelPost.find(params[:id])
+		@post = TravelPost.find(params[:id])
+		@user = @travel_post.user
 		# 投稿に紐づけたタグの取得
-		@post_tags = @travel_post.tags
-
+		@travel_post = TravelPost.find(params[:id])
 	end
 
 	# GET /travel_posts/new
@@ -27,17 +29,23 @@ class TravelPostsController < ApplicationController
 	end
 
 	# GET /travel_posts/1/edit
-		def edit
+	def edit
+		@user = @travel_post.user
+		@tag = Tag.find(params[:id])
+	end
+	def user
+		return User.find_by(id:self.user_id)
 	end
 
 	# POST /travel_posts
 	# POST /travel_posts.json
 	def create
-		@travel_post = current_user.travel_posts.new(travel_post_params)
+		@post = TravelPost.new(travel_post_params)
+		@post.user_id = current_user.id
 		respond_to do |format|
-    		if @travel_post.save(travel_post_params)
-        		format.html { redirect_to travel_posts_path(@travel_post.id), notice: 'Travel post was successfully created.' }
-        		format.json { render :show, status: :created, location: @travel_post }
+    		if @post.save(travel_post_params)
+        		format.html { redirect_to travel_posts_path(@post.id), notice: 'Travel post was successfully created.' }
+        		format.json { render :show, status: :created, location: @post }
     		else
     			@travel_post = TravelPost.new
         		format.html { render :new }
@@ -50,6 +58,7 @@ class TravelPostsController < ApplicationController
 	# PATCH/PUT /travel_posts/1.json
 	def update
     	respond_to do |format|
+    		@travel_post = TravelPost.find(params[:id])
     		if @travel_post.update(travel_post_params)
         		format.html { redirect_to @travel_post, notice: 'Travel post was successfully updated.' }
         		format.json { render :show, status: :ok, location: @travel_post }
@@ -63,12 +72,11 @@ class TravelPostsController < ApplicationController
 	# DELETE /travel_posts/1
 	# DELETE /travel_posts/1.json
 	def destroy
-	    @travel_post.destroy
-    	respond_to do |format|
-    		format.html { redirect_to travel_posts_url, notice: 'Travel post was successfully destroyed.' }
-    		format.json { head :no_content }
-    		flash[:alert] = "投稿を削除しました"
-			redirect_to user_path
+		travel_post = TravelPost.find(params[:id])
+	    if travel_post.destroy
+    		redirect_to travel_posts_path
+    	else
+    		render :edit
     	end
 	end
 	def search
@@ -76,6 +84,26 @@ class TravelPostsController < ApplicationController
 		@tag = Tag.find(params[:tag_id])  #タグを取得
 		@posts = @tag.posts.all           #タグに紐付けられた投稿を全て表示
 	end
+
+	def save_tags
+    current_tags = self.tagss.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    # Destroy old taggings:
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name:old_name)
+    end
+
+    # Create new taggings:
+    new_tags.each do |new_name|
+      travel_post_tag = Tag.find_or_create_by(name:new_name)
+      self.tags << travel_post_tag
+    end
+  end
+
+
+
 
 
 	private
@@ -86,6 +114,6 @@ class TravelPostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     	def travel_post_params
-    		params.require(:travel_post).permit(:user_id, :image_id, :title, :body, :price, :img, :tag_id )
+    		params.require(:travel_post).permit(:user_id, :image_id, :title, :body, :price, :img, :tag_id, :content )
     	end
 end

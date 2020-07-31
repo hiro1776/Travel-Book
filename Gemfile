@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+ #gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -75,10 +75,14 @@ gem 'refile-mini_magick'
 gem 'carrierwave'
 gem 'kaminari'
 gem 'ransack'
-gem 'carrierwave'
 
 gem 'redcarpet', '~> 2.3.0'
 gem 'coderay'
+gem 'pry-rails'
 
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 
 

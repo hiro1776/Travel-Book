@@ -1,25 +1,22 @@
 <!--マイページ画面 -->
-
-<h3><strong>マイページ</strong></h3>
-        <table class="table table-bordered table-condensed">
-            <p>
-                <strong class="information-link">登録情報</strong>
-                <%= link_to " 編集する", edit_user_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
-            </p>
-            <tr>
-                <td class="col-xs-2">氏名</td>
-                <td><%= @user.name %></td>
-            </tr>
-            <tr>
-                <td class="col-xs-2">メールアドレス</td>
-                <td><%= @user.email %></td>
-            </tr>
-        </table>
+<div class="mypage">
+    <h3><strong>マイページ</strong></h3><hr>
+    <table class="table table-bordered table-condensed">
+        <strong class="information-link">登録情報 </strong>
+        <%= link_to " 編集する ", edit_user_path, class: "glyphicon glyphicon-pencil btn btn-success" %>&nbsp;
+        <strong class="shipping-link">新規投稿　</strong>
+        <%= link_to " 投稿する ", new_travel_post_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+        <tr>
+            <td>ユーザ名</td>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <td>メールアドレス</td>
+            <td><%= @user.email %></td>
+        </tr>
+    </table>
         <p>
-            <strong class="shipping-link">新規投稿　</strong>
-            <%= link_to " 投稿する", new_travel_post_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+            <strong>投稿履歴</strong>
+            <%= link_to " 一覧を見る", mypost_user_path , class: "glyphicon glyphicon-folder-open btn btn-info" %>
         </p>
-        <p>
-            <strong class="shipping-link">投稿履歴</strong>
-            <%= link_to " 一覧を見る", post_histories_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
-        </p>
+</div>

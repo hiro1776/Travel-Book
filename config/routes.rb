@@ -11,11 +11,11 @@ Rails.application.routes.draw do
 
   root 'abouts#index'
   resources :users, only: [:show, :edit, :update ]
-  resources :travel_posts
-  resources :tags do
-    resources :travel_posts
+  get 'users/:id/mypost' => 'users#mypost', as: 'mypost_user'
+  resources :travel_posts do
+    resources :comments, only: [:create]
   end
-  resources :tag_maps, only:[:create]
-  resources :post_histories
+  resources :likes, only: [:create, :destroy]
+  resources :tags
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

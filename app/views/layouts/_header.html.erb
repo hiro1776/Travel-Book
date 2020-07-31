@@ -2,7 +2,7 @@
 <!-- ログイン中の場合 -->
      <header>
           <div class="header-content">
-               <ul class="d-flex">
+               <ul class="nav-header">
                     <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
                          <li><%= link_to "マイページ", user_path(current_user), class: "nav-button" %></li>
                          <li><%= link_to "投稿一覧", travel_posts_path, class: "nav-button" %></li>
@@ -15,7 +15,7 @@
 <!-- 未ログインの場合 -->
      <header>
           <div class="header-content">
-               <ul class="d-flex">
+               <ul class="nav-header">
                     <div class="mr-auto"><%= link_to image_tag("logo.png"), root_path, class: "logo" %></div>
                          <li><%= link_to "新規登録", new_user_registration_path, class: "nav-button" %></li>
                          <li><%= link_to "お問い合わせ", contacts_path,class: "nav-button" %></li>

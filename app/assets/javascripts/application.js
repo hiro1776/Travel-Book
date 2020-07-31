@@ -10,18 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 
-$(function() {
+$ document.addEventListener("turbolinks:load",(function() {
     $('.a').slick({
         dots: true,
         autoplay: true,
         autoplaySpeed: 3000,
     });
 });
+
+$('#like-btn-<%= @post.id %>').html("<%= escape_javascript(render partial: "likes/like", locals: { post: @post }) %>");
