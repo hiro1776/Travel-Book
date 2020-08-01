@@ -85,7 +85,7 @@ gem 'dotenv-rails'
 
 
 group :production do
-  gem 'mysql2'
+  gem 'mysql2', '0.3.21'
 end
 
 
