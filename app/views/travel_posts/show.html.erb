@@ -7,7 +7,7 @@
 		</tr>
 		<tr>
 			<td>投稿画像</td>
-			<td><%= image_tag @post.img.url  %></td><br>
+			<td><%= attachment_image_tag @post, :image, format: 'jpeg' %></td><br>
 		</tr>
 		<tr>
 			<td>投稿内容</td>

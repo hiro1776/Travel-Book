@@ -114,6 +114,6 @@ class TravelPostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     	def travel_post_params
-    		params.require(:travel_post).permit(:user_id, :image_id, :title, :body, :price, :img, :tag_id, :content )
+    		params.require(:travel_post).permit(:user_id, :image, :title, :body, :price, :img, :tag_id, :content )
     	end
 end
