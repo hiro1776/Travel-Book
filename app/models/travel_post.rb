@@ -6,6 +6,5 @@ class TravelPost < ApplicationRecord
 	validates :title, presence: true
 	validates :body, presence: true
 	attachment :image
-	mount_uploader :img, ImgUploader
 
 end
